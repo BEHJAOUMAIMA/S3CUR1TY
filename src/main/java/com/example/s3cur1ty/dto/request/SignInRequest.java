@@ -1,4 +1,5 @@
-package com.example.s3cur1ty.dto.response;
+package com.example.s3cur1ty.dto.request;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +10,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JwtAuthenticationResponse {
+public class SignInRequest {
 
-    private String token;
+    private String email;
+
+    private String password;
 
 }
