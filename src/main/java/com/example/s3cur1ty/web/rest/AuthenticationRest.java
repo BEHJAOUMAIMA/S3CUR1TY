@@ -1,4 +1,4 @@
-package com.example.s3cur1ty.rest.web;
+package com.example.s3cur1ty.web.rest;
 
 
 import com.example.s3cur1ty.dto.request.SignInRequest;
