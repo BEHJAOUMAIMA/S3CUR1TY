@@ -28,9 +28,19 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public JwtAuthenticationResponse signUp(SignUpRequest request) {
 
-        User user = User.builder().firstName(request.getFirstName()).lastName(request.getLastName())
-                .email(request.getEmail()).password(passwordEncoder.encode(request.getPassword()))
-                .role(UserRole.USER).build();
+        UserRole role = switch (request.getRole()) {
+            case "ADMIN" -> UserRole.ADMIN;
+            case "SUPER_ADMIN" -> UserRole.SUPER_ADMIN;
+            default -> UserRole.USER;
+        };
+
+        User user = User.builder()
+                .firstName(request.getFirstName())
+                .lastName(request.getLastName())
+                .email(request.getEmail())
+                .password(passwordEncoder.encode(request.getPassword()))
+                .role(role)
+                .build();
 
         userRepository.save(user);
 

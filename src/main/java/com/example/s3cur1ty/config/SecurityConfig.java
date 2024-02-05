@@ -32,10 +32,6 @@ public class SecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers("/api/v1/auth/**").permitAll()
-                                .requestMatchers("/api/v1/tasks/view").hasAnyRole("USER", "ADMIN", "SUPER_ADMIN")
-                                .requestMatchers("/api/v1/tasks/add/{id}").hasAnyRole( "ADMIN", "SUPER_ADMIN")
-                                .requestMatchers("/api/v1/tasks/update/{id}").hasAnyRole( "ADMIN", "SUPER_ADMIN")
-                                .requestMatchers("/api/v1/tasks/delete/{id}").hasRole("SUPER_ADMIN")
                                 .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider())
